@@ -8,6 +8,4 @@ An HTTP Listener that notifies about new Github issues and pull request comments
 
 # Bot Settings
 - Create a new webhook for your repository
-- Payload URL: <HUBOT_URL>:<PORT>/hubot/gh-comments?room=<room>
-
-WIP
+- Payload URL: \<HUBOT_URL\>:\<PORT\>/hubot/gh-comments?room=\<room\>
