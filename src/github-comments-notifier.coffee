@@ -24,7 +24,7 @@
 
 url           = require('url')
 querystring   = require('querystring')
-eventTypes    = ['issues', 'issue_comment', 'pull_request', 'pull_request']
+eventTypes    = ['issues', 'issue_comment', 'pull_request', 'pull_request_review_comment']
 
 module.exports = (robot) ->
   robot.router.post "/hubot/gh-comments", (req, res) ->
@@ -59,11 +59,11 @@ eventTypeActions =
   pull_request: (data, callback) ->
     analyzeData(data, 'pull_request', callback)
   pull_request_review_comment: (data, callback) ->
-    analyzeData.reviewed(null, data.comment, 'pull_request', callback)
+    eventActions.reviewed(null, data.comment, 'pull_request', callback)
 
 analyzeData = (data, eventType, callback) ->
   if eventActions[data.action]?
-    eventActions[data.action](data[eventType], data[comment], eventType, callback)
+    eventActions[data.action](data[eventType], data.comment, eventType, callback)
   else
     console.log "Github comments notifier warn: Undefined #{data.action} action."
 
