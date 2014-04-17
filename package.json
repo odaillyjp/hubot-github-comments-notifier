@@ -1,0 +1,28 @@
+{
+  "name":        "hubot-github-comments-notifier",
+  "version":     "0.0.1",
+  "description": "An HTTP Listener that notifies about new Github issue and pull request comments",
+  "main":        "src/github-comments-notifier.coffee",
+  "homepage":    "https://github.com/odaillyjp/hubot-github-comments-notifier",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/odaillyjp/hubot-github-comments-notifier.git"
+  },
+  "keywords": [
+    "hubot",
+    "github"
+  ],
+  "author": {
+    "name":  "Suguru Odai",
+    "email": "ourqwers@gmail.com"
+  },
+  "license": "MIT",
+  "dependecies": {
+    "coffee-script": ">= 1.1.0",
+    "url": "~0.7.9",
+    "querystring": "~0.2.0"
+  }
+}
