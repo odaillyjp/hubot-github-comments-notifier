@@ -73,7 +73,7 @@ eventActions =
       user:      dataType.user.login
       action:    'opened'
       eventType: eventType
-      url:       comment.html_url
+      url:       dataType.html_url
       title:     dataType.title
       body:      dataType.body
     buildMessage(messageData, callback)
@@ -93,7 +93,7 @@ eventActions =
       user:      dataType.user.login
       action:    'closed'
       eventType: eventType
-      url:       comment.html_url
+      url:       dataType.html_url
       title:     dataType.title
       body:      dataType.body
     buildMessage(messageData, callback)
@@ -103,7 +103,7 @@ eventActions =
       user:      dataType.user.login
       action:    'reopened'
       eventType: eventType
-      url:       comment.html_url
+      url:       dataType.html_url
       title:     dataType.title
       body:      dataType.body
     buildMessage(messageData, callback)
