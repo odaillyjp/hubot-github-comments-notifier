@@ -24,7 +24,7 @@
 
 url           = require('url')
 querystring   = require('querystring')
-eventTypes    = ['issues', 'issue_comment', 'pull_request']
+eventTypes    = ['issues', 'issue_comment', 'pull_request', 'pull_request']
 
 module.exports = (robot) ->
   robot.router.post "/hubot/gh-comments", (req, res) ->
@@ -58,6 +58,8 @@ eventTypeActions =
     analyzeData(data, 'issue', callback)
   pull_request: (data, callback) ->
     analyzeData(data, 'pull_request', callback)
+  pull_request_review_comment: (data, callback) ->
+    analyzeData.reviewed(null, data.comment, 'pull_request', callback)
 
 analyzeData = (data, eventType, callback) ->
   if eventActions[data.action]?
@@ -104,6 +106,16 @@ eventActions =
       url:       comment.html_url
       title:     dataType.title
       body:      dataType.body
+    buildMessage(messageData, callback)
+
+  reviewed: (dataType, comment, eventType, callback) ->
+    messageData =
+      user:      comment.user.login
+      action:    'commented on'
+      eventType: eventType
+      url:       comment.html_url
+      title:     comment.path
+      body:      comment.body
     buildMessage(messageData, callback)
 
 buildMessage = (data, callback) ->
