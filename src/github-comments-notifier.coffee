@@ -95,7 +95,7 @@ eventActions =
       eventType: eventType
       url:       dataType.html_url
       title:     dataType.title
-      body:      dataType.body
+      body:      ''
     buildMessage(messageData, callback)
 
   reopened: (dataType, comment, eventType, callback) ->
