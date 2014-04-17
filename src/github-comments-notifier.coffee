@@ -30,7 +30,7 @@ module.exports = (robot) ->
   robot.router.post "/hubot/gh-comments", (req, res) ->
     query = querystring.parse(url.parse(req.url).query)
 
-    data = req.body
+    data = JSON.parse(req.body.payload)
     room = query.room
     eventType = req.headers["x-github-event"]
 
@@ -49,7 +49,7 @@ notifierComment = (data, eventType, callback) ->
   if eventTypeActions[eventType]?
     eventTypeActions[eventType](data, callback)
   else
-    console.log "Github comments notifier warn: Undefine #{eventType} event."
+    console.log "Github comments notifier warn: Undefined #{eventType} event."
 
 eventTypeActions =
   issues: (data, callback) ->
@@ -57,11 +57,11 @@ eventTypeActions =
   pull_request: (data, callback) ->
     analyzeData(data, 'pull_request', callback)
 
-analyzeData = (data, eventType, callback)
+analyzeData = (data, eventType, callback) ->
   if eventActions[data.action]?
     eventActions[data.action](data[eventType], data[comment], eventType, callback)
   else
-    console.log "Github comments notifier warn: Undefine #{data.action} action."
+    console.log "Github comments notifier warn: Undefined #{data.action} action."
 
 eventActions =
   opened: (dataType, comment, eventType, callback) ->
@@ -78,7 +78,7 @@ eventActions =
     messageData =
       user:      comment.user.login
       action:    'commented on'
-      eventTyoe: eventType
+      eventType: eventType
       url:       comment.html_url
       title:     dataType.title
       body:      dataType.body
