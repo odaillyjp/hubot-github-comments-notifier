@@ -63,59 +63,59 @@ eventTypeActions =
 
 analyzeData = (data, eventType, callback) ->
   if eventActions[data.action]?
-    eventActions[data.action](data[eventType], data.comment, eventType, callback)
+    eventActions[data.action](data, eventType, callback)
   else
     console.log "Github comments notifier warn: Undefined #{data.action} action."
 
 eventActions =
-  opened: (dataType, comment, eventType, callback) ->
+  opened: (data, eventType, callback) ->
     messageData =
-      user:      dataType.user.login
+      user:      data[eventType].user.login
       action:    'opened'
       eventType: eventType
-      url:       dataType.html_url
-      title:     dataType.title
-      body:      dataType.body
+      url:       data[eventType].html_url
+      title:     data[eventType].title
+      body:      data[eventType].body
     buildMessage(messageData, callback)
 
-  created: (dataType, comment, eventType, callback) ->
+  created: (data, eventType, callback) ->
     messageData =
-      user:      comment.user.login
+      user:      data.comment.user.login
       action:    'commented on'
       eventType: eventType
-      url:       comment.html_url
-      title:     dataType.title
-      body:      comment.body
+      url:       data.comment.html_url
+      title:     data[eventType].title
+      body:      data.comment.body
     buildMessage(messageData, callback)
 
-  closed: (dataType, comment, eventType, callback) ->
+  closed: (data, eventType, callback) ->
     messageData =
-      user:      dataType.user.login
+      user:      data[eventType].user.login
       action:    'closed'
       eventType: eventType
-      url:       dataType.html_url
-      title:     dataType.title
+      url:       data[eventType].html_url
+      title:     data[eventType].title
       body:      ''
     buildMessage(messageData, callback)
 
-  reopened: (dataType, comment, eventType, callback) ->
+  reopened: (data, eventType, callback) ->
     messageData =
-      user:      dataType.user.login
+      user:      data[eventType].user.login
       action:    'reopened'
       eventType: eventType
-      url:       dataType.html_url
-      title:     dataType.title
-      body:      dataType.body
+      url:       data[eventType].html_url
+      title:     data[eventType].title
+      body:      data[eventType].body
     buildMessage(messageData, callback)
 
-  reviewed: (dataType, comment, eventType, callback) ->
+  reviewed: (data, eventType, callback) ->
     messageData =
-      user:      comment.user.login
+      user:      data.comment.user.login
       action:    'commented on'
       eventType: eventType
-      url:       comment.html_url
-      title:     comment.path
-      body:      comment.body
+      url:       data.comment.html_url
+      title:     data.comment.path
+      body:      data.comment.body
     buildMessage(messageData, callback)
 
 buildMessage = (data, callback) ->
