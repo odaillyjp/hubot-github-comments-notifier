@@ -139,7 +139,7 @@ stripTags = (body) ->
     if sentence.charAt(0) == '`'
       resolved_body += sentence
     else
-      resolved_body += replaceBreakTags(filterComments(body))
+      resolved_body += replaceBreakTags(filterComments(sentence))
   resolved_body
 
 buildMessage = (data, callback) ->
