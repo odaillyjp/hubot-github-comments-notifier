@@ -1,14 +1,19 @@
 # Description:
 #   An HTTP Listener that notifies about new Github issues and pull request comments
 #
+# Dependencies:
+#   "url"         : "~0.7.9"
+#   "querystring" : "~0.2.0"
+#
 # Configuration:
 #   You will have to do the following:
 #   1. Create a new webhook for your `myuser/myrepo` repository at:
 #      https://github.com/myuser/myrepo/settings/hooks/new
 #
-#   2. Select the individual events to minimize the load on your Hubot.
+#   2. Add the url: <HUBOT_URL>:<PORT>/hubot/gh-comments?room=<room>
 #
-#   3. Add the url: <HUBOT_URL>:<PORT>/hubot/gh-comments?room=<room>
+#   3. Add the event trigger: "Send me everything" or
+#      select "Pull request", "Pull request review comment", "Issues", "Issue comment" events
 #
 # Commands:
 #   None
