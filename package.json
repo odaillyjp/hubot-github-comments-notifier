@@ -1,6 +1,6 @@
 {
   "name":        "hubot-github-comments-notifier",
-  "version":     "0.0.3",
+  "version":     "0.0.4",
   "description": "An HTTP Listener that notifies about new Github issue and pull request comments",
   "main":        "src/github-comments-notifier.coffee",
   "homepage":    "https://github.com/odaillyjp/hubot-github-comments-notifier",
