@@ -126,5 +126,11 @@ eventActions =
 filterComment = (body) ->
   body.replace /\<\!--.*?--\>/, ''
 
+replaceBreakTags = (body) ->
+  body.replace /\<[/\s]*br[/\s]*\>/gi, '\n'
+
+stripTags = (body) ->
+  replaceBreakTags(filterComment(body))
+
 buildMessage = (data, callback) ->
-  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{filterComment(data.body)}"
+  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{stripTags(data.body)}"
