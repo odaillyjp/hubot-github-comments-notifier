@@ -118,5 +118,8 @@ eventActions =
       body:      data.comment.body
     buildMessage(messageData, callback)
 
+filterComment = (body) ->
+  body.replace /\<\!--.*?--\>/, ''
+
 buildMessage = (data, callback) ->
-  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{data.body}"
+  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{filterComment(data.body)}"
