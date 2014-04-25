@@ -136,7 +136,7 @@ stripTags = (body) ->
   resolved_body = ''
   sentences = parseWithQuote(body)
   sentences.forEach (sentence) ->
-    if sentence.charAt(0) === '`'
+    if sentence.charAt(0) == '`'
       resolved_body += sentence
     else
       resolved_body += replaceBreakTags(filterComments(body))
