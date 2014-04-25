@@ -123,8 +123,24 @@ eventActions =
       body:      data.comment.body
     buildMessage(messageData, callback)
 
-filterComment = (body) ->
-  body.replace /\<\!--.*?--\>/, ''
+filterComments = (body) ->
+  body.replace /\<\!--.*?--\>/g, ''
+
+replaceBreakTags = (body) ->
+  body.replace /\<[/\s]*br[/\s]*\>/gi, '\n'
+
+parseWithQuote = (body) ->
+  body.match /[^`]*|`[^`]*`/g
+
+stripTags = (body) ->
+  resolved_body = ''
+  sentences = parseWithQuote(body)
+  sentences.forEach (sentence) ->
+    if sentence.charAt(0) === '`'
+      resolved_body += sentence
+    else
+      resolved_body += replaceBreakTags(filterComments(body))
+  resolved_body
 
 buildMessage = (data, callback) ->
-  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{filterComment(data.body)}"
+  callback "#{data.user} #{data.action} #{data.eventType} #{data.url} - #{data.title}\n#{stripTags(data.body)}"
