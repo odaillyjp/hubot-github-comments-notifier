@@ -127,7 +127,7 @@ filterComments = (body) ->
   body.replace /\<\!--.*?--\>/g, ''
 
 replaceBreakTags = (body) ->
-  body.replace /\<[/\s]*br[/\s]*\>/gi, '\n'
+  body.replace /\<\/?br\/?\>/gi, '\n'
 
 parseWithQuote = (body) ->
   body.match /[^`]*|`[^`]*`/g
