@@ -90,7 +90,7 @@ eventActions =
 
   closed: (data, eventType, callback) ->
     messageData =
-      user:      data.sender.user.login
+      user:      data.sender.login
       action:    'closed'
       eventType: eventType
       url:       data[eventType].html_url
