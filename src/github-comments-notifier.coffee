@@ -130,7 +130,7 @@ replaceBreakTags = (body) ->
   body.replace /\<\/?br\/?\>/gi, '\n'
 
 parseWithQuote = (body) ->
-  body.match /[^`]+|`[^`]*`/g
+  body.match(/[^`]+|`[^`]*`/g) || ['']
 
 stripTags = (body) ->
   resolved_body = ''
