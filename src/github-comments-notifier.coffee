@@ -64,7 +64,7 @@ eventTypeActions =
   pull_request: (data, callback) ->
     analyzeData(data, 'pull_request', callback)
   pull_request_review_comment: (data, callback) ->
-    eventActions.reviewed(null, data.comment, 'pull_request', callback)
+    eventActions.reviewed(data, 'pull_request', callback)
 
 analyzeData = (data, eventType, callback) ->
   if eventActions[data.action]?
