@@ -124,7 +124,7 @@ eventActions =
     buildMessage(messageData, callback)
 
 filterComments = (body) ->
-  body.replace /\<\!--.*?--\>/g, ''
+  body.replace /\<\!--([\n\r]|.)*?--\>/g, ''
 
 replaceBreakTags = (body) ->
   body.replace /\<\/?br\/?\>/gi, '\n'
