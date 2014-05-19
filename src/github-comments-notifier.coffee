@@ -132,6 +132,9 @@ parseLineBreakSyntax = (body) ->
 parseImageSyntax = (body) ->
   body.replace /\!\[([\n\r]|.)*?\]\(([\n\r]|.)*?\)/, "$2"
 
+parseMarkdownSyntax = (body) ->
+  parseImageSyntax(parseLineBreakSyntax(filterComments(body)))
+
 parseWithQuote = (body) ->
   body.match(/[^`]+|`[^`]*`/g) || ['']
 
@@ -142,7 +145,7 @@ stripTags = (body) ->
     if sentence.charAt(0) == '`'
       resolved_body += sentence
     else
-      resolved_body += parseImageSyntax(parseLineBreakSyntax(filterComments(sentence)))
+      resolved_body += parseMarkdownSyntax(sentence)
   resolved_body
 
 buildMessage = (data, callback) ->
