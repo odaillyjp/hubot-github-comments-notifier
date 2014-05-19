@@ -1,4 +1,4 @@
-# v0.0.11
+# v0.0.12
 - Display images in Lingr, if include image syntax in a comment.
 
 # v0.0.10
