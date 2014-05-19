@@ -130,7 +130,7 @@ parseLineBreakSyntax = (body) ->
   body.replace /\<\/?br\/?\>/gi, '\n'
 
 parseImageSyntax = (body) ->
-  body.replace /\!\[([\n\r]|.)*?\]\(([\n\r]|.)*?\)/, "$2"
+  body.replace /\!\[(?:[\n\r]|.)*?\]\(((?:[\n\r]|.)*?)\)/, "$1"
 
 parseMarkdownSyntax = (body) ->
   parseImageSyntax(parseLineBreakSyntax(filterComments(body)))
