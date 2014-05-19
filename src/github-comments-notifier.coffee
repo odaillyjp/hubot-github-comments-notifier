@@ -126,7 +126,7 @@ eventActions =
 filterComments = (body) ->
   body.replace /\<\!--([\n\r]|.)*?--\>/g, ''
 
-replaceBreakTags = (body) ->
+parseLineBreakSyntax = (body) ->
   body.replace /\<\/?br\/?\>/gi, '\n'
 
 parseImageSyntax = (body) ->
@@ -142,7 +142,7 @@ stripTags = (body) ->
     if sentence.charAt(0) == '`'
       resolved_body += sentence
     else
-      resolved_body += parseImageSyntax(replaceBreakTags(filterComments(sentence)))
+      resolved_body += parseImageSyntax(parseLineBreakSyntax(filterComments(sentence)))
   resolved_body
 
 buildMessage = (data, callback) ->
