@@ -129,6 +129,9 @@ filterComments = (body) ->
 replaceBreakTags = (body) ->
   body.replace /\<\/?br\/?\>/gi, '\n'
 
+parseImageSyntax = (body) ->
+  body.replace /\!\[([\n\r]|.)*?\]\(([\n\r]|.)*?\)/, "$2"
+
 parseWithQuote = (body) ->
   body.match(/[^`]+|`[^`]*`/g) || ['']
 
@@ -139,7 +142,7 @@ stripTags = (body) ->
     if sentence.charAt(0) == '`'
       resolved_body += sentence
     else
-      resolved_body += replaceBreakTags(filterComments(sentence))
+      resolved_body += parseImageSyntax(replaceBreakTags(filterComments(sentence)))
   resolved_body
 
 buildMessage = (data, callback) ->
